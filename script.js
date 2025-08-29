@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
         animateCounter(mitchEntry.querySelector('.height'), mitchHeight);
     }, 1500);
     
-    // Start Sophie's animation before Mitch finishes (2 seconds after Mitch starts)
+    // Start Sophie's animation before Mitch finishes (2.5 seconds after Mitch starts)
     const sophieEntry = entries[1];
     const sophieHeight = parseInt(sophieEntry.dataset.height);
     
     setTimeout(() => {
         animateCounter(sophieEntry.querySelector('.height'), sophieHeight, () => {
-            // After Sophie reaches 50, show DIED and start fade sequence
+            // After Sophie reaches 35, show DIED and start fade sequence
             setTimeout(() => {
                 sophieEntry.classList.add('died');
                 sophieEntry.querySelector('.height').textContent = 'DIED';
@@ -29,21 +29,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         sophieEntry.style.display = 'none';
                         
                         // Update places for remaining entries
-                        document.querySelector('[data-name="Tim"]').querySelector('.place').textContent = '2nd';
+                        document.querySelector('[data-name="Sharon"]').querySelector('.place').textContent = '2nd';
                         document.querySelector('[data-name="Kimberly"]').querySelector('.place').textContent = '3rd';
                         document.querySelector('[data-name="Kristi"]').querySelector('.place').textContent = '4th';
                         
-                        // Show Sharon in 5th place
-                        const sharonEntry = document.querySelector('[data-name="Sharon"]');
-                        sharonEntry.classList.remove('hidden');
-                        sharonEntry.style.display = 'flex';
-                        sharonEntry.style.animation = 'fadeIn 1s ease-out forwards';
+                        // Show Tim in 5th place
+                        const timEntry = document.querySelector('[data-name="Tim"]');
+                        timEntry.classList.remove('hidden');
+                        timEntry.style.display = 'flex';
+                        timEntry.style.animation = 'fadeIn 1s ease-out forwards';
                         
                     }, 1000);
-                }, 500);
-            }, 300);
+                }, 300);
+            }, 200);
         });
-    }, 3000);
+    }, 2500);
+    
+    // Start Sharon's counting at the same time as Sophie's
+    const sharonEntry = document.querySelector('[data-name="Sharon"]');
+    const sharonHeight = parseInt(sharonEntry.dataset.height);
+    
+    setTimeout(() => {
+        animateCounter(sharonEntry.querySelector('.height'), sharonHeight);
+    }, 2500);
 });
 
 function animateCounter(element, target, callback) {
