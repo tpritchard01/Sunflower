@@ -1,51 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const entries = document.querySelectorAll('.entry:not(.hidden)');
+    const entries = document.querySelectorAll('.entry');
     
     // Start all animations at the same time
     setTimeout(() => {
         entries.forEach(entry => {
             const height = parseInt(entry.dataset.height);
             const heightElement = entry.querySelector('.height');
-            
-            if (entry.dataset.name === 'Sophie') {
-                // Sophie gets special treatment with death sequence
-                animateCounter(heightElement, height, () => {
-                    // After Sophie reaches 35, show DIED and start fade sequence
-                    setTimeout(() => {
-                        entry.classList.add('died');
-                        heightElement.textContent = 'DIED';
-                        
-                        setTimeout(() => {
-                            // Fade out Sophie's entire entry
-                            entry.style.animation = 'fadeOut 1s ease-out forwards';
-                            
-                            setTimeout(() => {
-                                // Remove Sophie
-                                entry.style.display = 'none';
-                                
-                                // Update places for remaining entries
-                                document.querySelector('[data-name="Sharon"]').querySelector('.place').textContent = '4th';
-                                
-                                // Show Tim in 5th place
-                                const timEntry = document.querySelector('[data-name="Tim"]');
-                                timEntry.classList.remove('hidden');
-                                timEntry.style.display = 'flex';
-                                timEntry.style.animation = 'fadeIn 1s ease-out forwards';
-                                
-                                // Animate Tim's counter
-                                const timHeight = parseInt(timEntry.dataset.height);
-                                animateCounter(timEntry.querySelector('.height'), timHeight);
-                                
-                            }, 1000);
-                        }, 300);
-                    }, 200);
-                });
-            } else {
-                // Everyone else just counts normally
-                animateCounter(heightElement, height);
-            }
+            animateCounter(heightElement, height);
         });
     }, 1500);
+    
+    // Show pending and perished sections after main entries have faded in
+    setTimeout(() => {
+        document.querySelector('.pending-section').classList.add('show');
+    }, 4500); // After main entries (3s) + delay
+    
+    setTimeout(() => {
+        document.querySelector('.perished-section').classList.add('show');
+    }, 5000); // Slightly after pending section
 });
 
 function animateCounter(element, target, callback) {
@@ -62,6 +34,22 @@ function animateCounter(element, target, callback) {
             element.textContent = Math.floor(current) + '"';
         }
     }, 50);
+}
+
+function togglePending() {
+    const button = document.querySelector('.pending-toggle');
+    const list = document.getElementById('pendingList');
+    
+    button.classList.toggle('expanded');
+    list.classList.toggle('expanded');
+}
+
+function togglePerished() {
+    const button = document.querySelector('.perished-toggle');
+    const list = document.getElementById('perishedList');
+    
+    button.classList.toggle('expanded');
+    list.classList.toggle('expanded');
 }
 
 function getOrdinal(num) {
