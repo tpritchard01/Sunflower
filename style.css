@@ -200,7 +200,7 @@ body::after {
 }
 
 .pending-list.expanded {
-    max-height: 300px;
+    max-height: 600px;
 }
 
 .pending-entry {
@@ -225,6 +225,11 @@ body::after {
 .pending-entry:nth-child(4) { animation-delay: 0.25s; }
 .pending-entry:nth-child(5) { animation-delay: 0.3s; }
 .pending-entry:nth-child(6) { animation-delay: 0.35s; }
+.pending-entry:nth-child(7) { animation-delay: 0.4s; }
+.pending-entry:nth-child(8) { animation-delay: 0.45s; }
+.pending-entry:nth-child(9) { animation-delay: 0.5s; }
+.pending-entry:nth-child(10) { animation-delay: 0.55s; }
+.pending-entry:nth-child(11) { animation-delay: 0.6s; }
 
 @keyframes pendingFadeIn {
     0% { opacity: 0; transform: translateY(-10px); }
@@ -339,6 +344,8 @@ body::after {
 .perished-entry:nth-child(12) { animation-delay: 0.65s; }
 .perished-entry:nth-child(13) { animation-delay: 0.7s; }
 .perished-entry:nth-child(14) { animation-delay: 0.75s; }
+.perished-entry:nth-child(15) { animation-delay: 0.8s; }
+.perished-entry:nth-child(16) { animation-delay: 0.85s; }
 
 @keyframes perishedFadeIn {
     0% { opacity: 0; transform: translateY(-10px); }
