@@ -195,12 +195,13 @@ body::after {
 
 .pending-list {
     max-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     transition: max-height 0.4s ease-out;
 }
 
 .pending-list.expanded {
-    max-height: 600px;
+    max-height: 400px;
 }
 
 .pending-entry {
@@ -306,12 +307,13 @@ body::after {
 
 .perished-list {
     max-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     transition: max-height 0.4s ease-out;
 }
 
 .perished-list.expanded {
-    max-height: 500px;
+    max-height: 400px;
 }
 
 .perished-entry {
